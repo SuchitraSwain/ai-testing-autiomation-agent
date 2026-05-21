@@ -5,10 +5,17 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import EmptyWorkspace from "./EmptyWorkspace";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Workspacebody() {
   const { userDetails } = useUserDetailContext();
 
+  const router = useRouter();
+
+  const onAddRepository = async () => {
+    router.push("/api/github");
+  };
   return (
     <div>
       <div className="flex items-center justify-between">
@@ -24,7 +31,9 @@ export default function Workspacebody() {
           <h2 className="text-lg">Connect Github and Add Repositories</h2>
         </div>
         <div>
-          <Button>Install</Button>
+          <Button type="button" onClick={onAddRepository}>
+            + Add Repository
+          </Button>
         </div>
       </Card>
 
